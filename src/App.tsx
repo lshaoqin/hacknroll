@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+export default function App() {
+    const [isSent, setIsSent] = useState(false);
+    return (
+        <>
+            <h1>2nd popular word</h1>>
+            <Image />
+            <p> Guess the 2nd most popular word that describes this word </p>
+            <Form />
+        </>
+    );
 }
 
-export default App;
+function Image() {
+    
+}
+
+function Form() {
+    const [text, setText] = useState("");
+    return (
+        <>
+            <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit;
+                    }}>
+                <textarea
+                    text ={text}
+                    onChange={e => setText(e.target.value)}
+                    placeholder = "Insert text here"
+                />
+
+                <button 
+                    type = "submit"
+                    disabled={text.length === 0} 
+                />
+                    Submit answer
+                </button>
+            
+
+            </form>
+        </>
+
+    );
+  }
+  
+function handleSubmit() {
+
+}
+
+
+function handleLeaderBoard(){
+    const [leaderboard, setLeaderboard] = useState([]);
+    setLeaderboard({...leaderboard, 
+
+    }) 
+
+}
+
+
