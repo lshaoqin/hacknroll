@@ -33,7 +33,7 @@ const Game: React.FC = () => {
         {(params)
         ?
         <div>
-        <img src={params?.picture} alt=''></img>
+        <img src={params.picture} alt=''></img>
         <TextField
               variant="outlined"
               margin="normal"

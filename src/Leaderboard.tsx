@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { setDefaultResultOrder } from 'dns';
+import { Card } from '@material-ui/core';
+import { CardContent } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import getRequest from './services/requests'
 
 type Leaderboard = {
@@ -18,13 +13,13 @@ type Leaderboard = {
 }
 
 
-const LeaderBoardList: React.FC<Leaderboard> = 
-    ({word, guesses, points, userSelected}: Leaderboard) => {
+const LeaderBoardList: React.FC = 
+    () => {
         const [error, setError] = useState<string>("");
         const [leaderboard, setLeaderboard] = useState<Leaderboard[]>([]);
 
         useEffect(() => {
-            getRequest('comments/fetch', {post_id: post_id})
+            getRequest('comments/fetch', {session_id: localStorage.getItem('session_id')})
               .then((value: object) => {
                 const board = value as Leaderboard[];
                 setLeaderboard(board);
@@ -41,31 +36,37 @@ const LeaderBoardList: React.FC<Leaderboard> =
 
         if (leaderboard) {
             return (
-                <HandleLeaderBoard leaderboard />
+                <HandleLeaderBoard leaderboard={leaderboard} />
             )
         }
+        
+        return(
+            <h2>Loading...</h2>
+        )
     }
 
+type Props = {
+    leaderboard: Leaderboard[];
+}
 
-
-function HandleLeaderBoard(leaderboard : Leaderboard[]){
+const HandleLeaderBoard:React.FC<Props> = ({leaderboard}) => {
     return (
         <>
             {leaderboard.map( (item, index) => (
                 <div style={{margin: '25%'}} className = {item.userSelected ? "user-selected" : ""}>
-                    <Card sx={{ maxWidth: 600 }} key = {index}>
+                    <Card style={{ maxWidth: 600 }} key = {index}>
                         <CardContent>
                             <Typography variant='h4'  gutterBottom>
                                 {item.word}
                             </Typography>
                             <Typography variant="body1">
                             There are {item.guesses - 1} other person(s) who guessed this.
-                            {item.userSelected} && You picked this word!                            
+                            {item.userSelected && <p>You picked this word!</p>}                            
                             </Typography>
                         </CardContent>
                     </Card>      
                 </div>
-                )}
+            ))}
         </>
     )
 }
