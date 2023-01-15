@@ -4,11 +4,12 @@ import './App.css';
 import Leaderboard from './Leaderboard';
 import LeaderBoardList from './Leaderboard';
 import HandleStats from './HandleStats';
+import HandleFirstInstance from './FirstInstance';
 
 function App() {
   return (
     <div className="App">
-      <App/>
+      <Game/>
     </div>
   );
 }
