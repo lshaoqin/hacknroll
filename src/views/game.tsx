@@ -4,6 +4,8 @@ import getRequest from "../services/requests";
 import { postRequest } from "../services/requests";
 import SendButton from "../components/SendButton";
 import { makeStyles } from "@material-ui/core";
+import HandleFirstInstance from "../FirstInstance";
+
 
 type GameParams = {
     picture: string;
@@ -50,6 +52,8 @@ const Game: React.FC = () => {
     
     return (
         <div>
+        <HandleFirstInstance />
+
         {(params)
         ?
         <div>

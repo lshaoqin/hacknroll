@@ -15,7 +15,7 @@ const StatsList: React.FC =
         const [stats, setStats] = useState<Stats>();
 
         useEffect(() => {
-            getRequest('comments/fetch', {session_id: localStorage.getItem('session_id')})
+            getRequest('get_id', {session_id: localStorage.getItem('session_id')})
               .then((value: object) => {
                 const statsBoard = value as Stats;
                 setStats(statsBoard);

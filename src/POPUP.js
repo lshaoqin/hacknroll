@@ -16,12 +16,13 @@ const POPUP = () => {
     <div>
       <button onClick={handleOpenModal}
       style= {{
-        backgroundColor: 'blue',
+        backgroundColor: 'navy',
         color: 'white',
-        padding: '10px, 20px'
+        padding: '10px, 10px',
+        fontFamily: 'Comic Sans MS, Comic Sans',
 
       }} 
-      >Open Modal</button>
+      >INSTRUCTIONS</button>
       <Modal
         isOpen={isOpen}
         onRequestClose={handleCloseModal}
@@ -32,31 +33,34 @@ const POPUP = () => {
             position: 'fixed'
           },
           content: {
-            width: '27%',
+            width: '28.5%',
             color: 'brown',
             fontFamily: 'Comic Sans MS, Comic Sans',
-            height: '81%',
+            height: '72%',
             margin: '0 auto',
             top: '50%',
             left: '30%',
             transform: 'translate(-50%, -50%)',
             border: '1px solid #ccc',
-            padding: '10px',
+            borderradius: '10px' ,
             boxShadow: '0px 0px 10px #000'
           }
         }}
       >
+         <div style={{ borderRadius: '60px'}}>
   
         <img src={require('.//phonto.jpg')} />
         <button onClick={handleCloseModal}
         style= {{
-          backgroundColor: 'blue',
-          color: 'white',
-          padding: '10px, 20px',
-          fontFamily: 'Comic Sans MS, Comic Sans'
-  
-        }} 
-        >CLOSE ME</button>
+          position: 'fixed',
+          top: '60',
+          bottom: '10', right: '10' ,
+          border: 'none' ,
+          backgroundColor: 'transparent'
+        }} >
+        <img src={require('./cross.jpg')} alt="Close button" />
+        </button>
+        </div>
       </Modal>
     </div>
   );
