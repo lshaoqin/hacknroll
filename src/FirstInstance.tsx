@@ -8,7 +8,7 @@ const HandleFirstInstance: React.FC = () => {
     const [error, setError] = useState<string>("");
 
     useEffect(() => {
-        getRequest('comments/fetch', {session_id: localStorage.getItem('session_id')})
+        getRequest('get_id', {session_id: localStorage.getItem('session_id')})
             .then((value: object) => {
             setIdFound(true);
             })
@@ -20,11 +20,8 @@ const HandleFirstInstance: React.FC = () => {
   
     return (
        <>
-        {{IdFound} && <POPUP />}
-        
-        {/* 2nd button for reminder instructions */}
-        {!{IdFound} && <div 
-            style = {{transform: 'translate(45%, -200%)'}} >
+        {{IdFound} && <div 
+            style = {{transform: 'translate(45%, -2%)'}} >
                 <POPUP />
         </div>}
       </>
