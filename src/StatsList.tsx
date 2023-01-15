@@ -4,7 +4,6 @@ import { Card } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import getRequest from './services/requests';
-import { PointerOptions } from '@testing-library/user-event/dist/utils';
 
 
 
@@ -64,6 +63,9 @@ type Props = {
 const HandleStats:React.FC<Props> = ({stats}) => {
     return (
         <>
+            
+                        
+      
             <h1>Player Statistics</h1>
             <p> Total Score: {stats.points} <br/>
                 Days Played: {stats.daysPlayed} <br />

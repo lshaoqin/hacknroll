@@ -53,6 +53,7 @@ const Game: React.FC = () => {
     
     return (
         <div>
+        <a href="/statistics"> Link to statistics</a>
         <HandleFirstInstance />
 
         {(params)

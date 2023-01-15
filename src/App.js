@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Game from './views/game';
-import POPUP from './POPUP';
 import './App.css';
+import Leaderboard from './Leaderboard';
+import StatsList from './StatsList';
 
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Game />} />
-      <Route path="/test" element={<POPUP />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/statistics" element={<StatsList/>} />
+      
     </Routes>
   </BrowserRouter>
   </div>
@@ -19,3 +22,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -14,7 +14,7 @@ const POPUP = () => {
   };
 
   return (
-    <div>
+    <div style={{alignItems: 'center'}}>
       <button onClick={handleOpenModal}
       style= {{
         backgroundColor: 'navy',
@@ -29,37 +29,36 @@ const POPUP = () => {
         onRequestClose={handleCloseModal}
         style={{
           overlay: {
+            width: '520px',
+            height: '720px',
+            maxWidth: 'none',
+            maxHeight: 'none',
             backgroundColor: 'rgba(0, 0, 0, 0.25)',
             zIndex: '1000',
-            position: 'fixed'
+            position: 'fixed',
+            margin: 'auto',
           },
           content: {
-            width: '28.5%',
-            color: 'brown',
-            fontFamily: 'Comic Sans MS, Comic Sans',
-            height: '72%',
-            margin: '0 auto',
-            top: '50%',
-            left: '30%',
-            transform: 'translate(-50%, -50%)',
+            width: 'auto', /* or a fixed width */
+            height: 'auto', /* or a fixed height */
             border: '1px solid #ccc',
             borderradius: '10px' ,
-            boxShadow: '0px 0px 10px #000'
+            boxShadow: '0px 0px 10px #000',
+            
           }
         }}
       >
          <div style={{ borderRadius: '60px'}}>
   
-        <img src={require('.//phonto.jpg')} />
+        <img src={require('.//phonto.jpg')} alt=''/>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+        }}>
         <CloseButton onClick={handleCloseModal}
-        style= {{
-          position: 'fixed',
-          top: '60',
-          bottom: '10', right: '10' ,
-          border: 'none' ,
-          backgroundColor: 'transparent'
-        }} />
-
+         />
+        </div>
         </div>
       </Modal>
     </div>
