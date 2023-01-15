@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
 const Game: React.FC = () => {
     const classes = useStyles()
 
-    const [params, setParams] = React.useState<GameParams>({'picture':'https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg', 'day':15});
+    const [params, setParams] = React.useState<GameParams>();
     const [error, setError] = React.useState<string>();
     const [word, setWord] = React.useState<string>();
 
@@ -39,7 +39,13 @@ const Game: React.FC = () => {
     }, []);
 
     function submitHandler() {
-        postRequest('game', {'session_id': localStorage.getItem('session_id'), 'guess': word})
+        postRequest('game', {'session_id': 1, 'guess': word, 'round_id':params?.day})
+        .then((response: object) => {
+            console.log(response)
+        })
+        .catch((error: any) => {
+            setError(error);
+        });
     }
     
     return (
