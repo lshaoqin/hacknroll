@@ -41,7 +41,7 @@ const Game: React.FC = () => {
     }, []);
 
     function submitHandler() {
-        postRequest('game', {'session_id': 1, 'guess': word, 'round_id':params?.day})
+        postRequest('game', {'session_id': localStorage.getItem('session_id'), 'guess': word, 'round_id':params?.day})
         .then((response: object) => {
             console.log(response)
         })
