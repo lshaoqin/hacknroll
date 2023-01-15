@@ -19,7 +19,15 @@ const HandleFirstInstance: React.FC = () => {
 
   
     return (
-      {IdFound} && <POPUP />
+       <>
+        {{IdFound} && <POPUP />}
+        
+        {/* 2nd button for reminder instructions */}
+        {!{IdFound} && <div 
+            style = {{transform: 'translate(45%, -200%)'}} >
+                <POPUP />
+        </div>}
+      </>
     );
   }
 
