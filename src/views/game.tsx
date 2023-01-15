@@ -3,14 +3,28 @@ import { TextField } from "@material-ui/core";
 import getRequest from "../services/requests";
 import { postRequest } from "../services/requests";
 import SendButton from "../components/SendButton";
+import { makeStyles } from "@material-ui/core";
 
 type GameParams = {
     picture: string;
     day: number;
 }
 
+const useStyles = makeStyles(() => ({
+    textArea: {
+        width: 200,
+        height: 20,
+    },
+    submitButton: {
+        marginLeft: -45,
+        marginTop: 45,
+    }
+  }));
+
 const Game: React.FC = () => {
-    const [params, setParams] = React.useState<GameParams>();
+    const classes = useStyles()
+
+    const [params, setParams] = React.useState<GameParams>({'picture':'https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg', 'day':15});
     const [error, setError] = React.useState<string>();
     const [word, setWord] = React.useState<string>();
 
@@ -25,7 +39,7 @@ const Game: React.FC = () => {
     }, []);
 
     function submitHandler() {
-        postRequest('game', {'session_id': localStorage.getItem('session_id'), 'guess':word})
+        postRequest('game', {'session_id': localStorage.getItem('session_id'), 'guess': word})
     }
     
     return (
@@ -33,21 +47,25 @@ const Game: React.FC = () => {
         {(params)
         ?
         <div>
+            <h2> Second guess - Day {params.day}</h2>
         <img src={params.picture} alt=''></img>
+        <div style={{display: "flex", alignItems:"center", justifyContent:"center"}}>
         <TextField
+        className={classes.textArea}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="word"
-              label="Enter your word here"
+              label="Second guess!"
               name="word"
-              autoComplete="E.g. 'Cat'"
               inputProps={{ maxLength: 12 }}
               autoFocus
               onChange={event => setWord(event.target.value)}
             />
+            <div className={classes.submitButton}>
         <SendButton onClick={submitHandler} />
+        </div>
+        </div>
         </div>
         :(error)
         ?<div>
