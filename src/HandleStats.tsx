@@ -1,8 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import { Card } from '@material-ui/core';
 import { CardContent } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
+import getRequest from './services/requests';
+import { PointerOptions } from '@testing-library/user-event/dist/utils';
+
+
+
+
+const StatsList: React.FC = 
+    () => {
+        const [error, setError] = useState<string>("");
+        const [stats, setStats] = useState<Stats>();
+
+        useEffect(() => {
+            getRequest('comments/fetch', {session_id: localStorage.getItem('session_id')})
+              .then((value: object) => {
+                const statsBoard = value as Stats;
+                setStats(statsBoard);
+              })
+              .catch((error: any) => {
+                setError(error.message);
+              });
+          }, [stats, setStats]);
+
+
+        if (error) {
+            return <h1>{error}</h1>;
+        }
+
+        if (stats) {
+            return (
+                <HandleStats stats = {stats} />
+            )
+        }
+        
+        return(
+            <h2>Loading...</h2>
+        )
+    }
+
+
+
 
 type Previous = {
     day:number;
@@ -11,17 +51,22 @@ type Previous = {
 }
 
 type Stats = {
-    points:number;
-    daysPlayed:number;
+    points: number;
+    daysPlayed: number;
     previous: Previous[];
-
 }
-const HandleStats:React.FC<Stats> = (stats) => {
+
+type Props = {
+    stats: Stats;
+}
+
+
+const HandleStats:React.FC<Props> = ({stats}) => {
     return (
         <>
             <h1>Player Statistics</h1>
             <p> Total Score: {stats.points} <br/>
-                Days Player: {stats.daysPlayed} <br />
+                Days Played: {stats.daysPlayed} <br />
                 Past 5 guesses:                
             </p>
             
@@ -43,4 +88,4 @@ const HandleStats:React.FC<Stats> = (stats) => {
     )
 }
 
-export default HandleStats;
+export default StatsList;
