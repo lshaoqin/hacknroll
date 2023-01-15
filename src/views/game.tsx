@@ -32,6 +32,7 @@ const Game: React.FC = () => {
         getRequest('game', {})
         .then((response: object) => {
             setParams(response as GameParams);
+            console.log(response)
         })
         .catch((error: any) => {
             setError(error);
@@ -40,13 +41,19 @@ const Game: React.FC = () => {
 
     function submitHandler() {
         postRequest('game', {'session_id': localStorage.getItem('session_id'), 'guess': word})
+        .then((response: object)=> {
+            console.log(response);
+        })
+        .catch((error: any) => {
+            setError(error);
+        })
     }
     
     return (
         <div>
         {(params)
         ?
-        <div>
+        <div style={{alignItems:"center", justifyContent:"center"}}>
             <h2> Second guess - Day {params.day}</h2>
         <img src={params.picture} alt=''></img>
         <div style={{display: "flex", alignItems:"center", justifyContent:"center"}}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-
+import Game from './views/game';
 import './App.css';
 
 
