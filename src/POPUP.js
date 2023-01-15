@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import CloseButton from './components/CloseButton'
 
 const POPUP = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,16 +51,15 @@ const POPUP = () => {
          <div style={{ borderRadius: '60px'}}>
   
         <img src={require('.//phonto.jpg')} />
-        <button onClick={handleCloseModal}
+        <CloseButton onClick={handleCloseModal}
         style= {{
           position: 'fixed',
           top: '60',
           bottom: '10', right: '10' ,
           border: 'none' ,
           backgroundColor: 'transparent'
-        }} >
-        <img src={require('./cross.jpg')} alt="Close button" />
-        </button>
+        }} />
+
         </div>
       </Modal>
     </div>
